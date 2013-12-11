@@ -10,12 +10,9 @@ module RiotAPI
 
 		def self.all(free=false)
 			champs_json = RiotAPI::Client.get('na', 'champion', { freeToPlay: free })
-			champions = []
-			champs_json["champions"].each do |c|
-				champions << Champion.new(c)
+			champs_json["champions"].map do |c|
+				Champion.new(c)
 			end
-
-			champions
 		end
 
 		def self.free_to_play_champions
