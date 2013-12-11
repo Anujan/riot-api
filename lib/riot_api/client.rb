@@ -12,7 +12,7 @@ module RiotAPI
 			if response.code == 200
 				JSON.parse(response.body)
 			else
-				throw InvalidAPIRequest, response.message
+				nil
 			end
 		end
 
@@ -23,7 +23,8 @@ module RiotAPI
 			if response.code == 200
 				JSON.parse(response.body)
 			else
-				throw InvalidAPIRequest, response.message
+				nil
+				#throw InvalidAPIRequest, response.message
 			end
 		end
 	end

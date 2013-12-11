@@ -1,9 +1,8 @@
 module RiotAPI
 	class Champion
-		attr_accessor :active, :attack_rank, :bot_enabled, :bot_mm_enabled, :defense_rank, 
-			:difficulty_rank, :free_to_play, :id, :magic_rank, :name, :ranked_play_enabled
 		def initialize(data)
 			data.each do |key, value|
+				self.class.send(:attr_accessor, key.to_sym)
 				instance_variable_set("@#{key.underscore}", value)
 			end
 		end
