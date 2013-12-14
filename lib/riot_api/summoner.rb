@@ -31,5 +31,18 @@ module RiotAPI
 			response || []
 		end
 
+		def mastery_pages
+			response = RiotAPI::Client.get(region, "summoner/#{summoner_id}/masteries")
+			response["pages"].map do |data|
+				MasteryPage.new(data)
+			end
+		end
+
+		def mastery_pages
+			response = RiotAPI::Client.get(region, "summoner/#{summoner_id}/runes")
+			response["pages"].map do |data|
+				RunePage.new(data)
+			end
+		end
 	end
 end
