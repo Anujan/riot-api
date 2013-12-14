@@ -4,7 +4,7 @@ module RiotAPI
 			data.each do |key, value|
 				self.class.send(:attr_accessor, key.to_sym)
 				if key == "slots"
-					slots = value
+					self.slots = value
 				else
 					instance_variable_set("@#{key.underscore}", value)
 				end

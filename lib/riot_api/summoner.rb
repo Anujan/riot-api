@@ -1,6 +1,8 @@
 module RiotAPI
 	class Summoner
-		def initialize(data)
+		attr_accessor :region
+		def initialize(data, region)
+			@region = region
 			data.each do |key, value|
 				self.class.send(:attr_accessor, key.to_sym)
 				instance_variable_set("@#{key.underscore}", value)
@@ -10,7 +12,7 @@ module RiotAPI
 		def self.find_by_name(region, name) 
 			response = RiotAPI::Client.get(region, "summoner/by-name/#{name}")
 			if response
-				Summoner.new(response)
+				Summoner.new(response, region)
 			else
 				nil
 			end
@@ -32,17 +34,15 @@ module RiotAPI
 		end
 
 		def mastery_pages
-			response = RiotAPI::Client.get(region, "summoner/#{summoner_id}/masteries")
-			response["pages"].map do |data|
-				MasteryPage.new(data)
-			end
+			MasteryPage.find(self.region, self.summoner_id)
 		end
 
-		def mastery_pages
-			response = RiotAPI::Client.get(region, "summoner/#{summoner_id}/runes")
-			response["pages"].map do |data|
-				RunePage.new(data)
-			end
+		def rune_pages
+			RunePage.find(self.region, self.summoner_id)
+		end
+
+		def player_stats(season='SEASON3')
+			PlayerStatSummary.find(self.region, self.summoner_id, season)
 		end
 	end
 end
