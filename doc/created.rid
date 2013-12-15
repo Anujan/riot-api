@@ -1,0 +1,13 @@
+Sat, 14 Dec 2013 19:44:53 -0500
+./lib/riot_api/aggregated_stat.rb	Sat, 14 Dec 2013 19:41:28 -0500
+./lib/riot_api/champion.rb	Sat, 14 Dec 2013 19:40:08 -0500
+./lib/riot_api/client.rb	Sat, 14 Dec 2013 19:38:07 -0500
+./lib/riot_api/game.rb	Sat, 14 Dec 2013 19:41:53 -0500
+./lib/riot_api/mastery_page.rb	Sat, 14 Dec 2013 19:15:40 -0500
+./lib/riot_api/player_stat_summary.rb	Sat, 14 Dec 2013 19:17:21 -0500
+./lib/riot_api/rune.rb	Sat, 14 Dec 2013 19:09:18 -0500
+./lib/riot_api/rune_page.rb	Sat, 14 Dec 2013 19:16:49 -0500
+./lib/riot_api/summoner.rb	Sat, 14 Dec 2013 19:44:27 -0500
+./lib/riot_api/talent.rb	Sat, 14 Dec 2013 19:09:03 -0500
+./lib/riot_api/team.rb	Sat, 14 Dec 2013 19:17:43 -0500
+./lib/riot_api.rb	Sat, 14 Dec 2013 19:32:07 -0500
