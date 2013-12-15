@@ -38,7 +38,7 @@ MasteryPage.find("NA", 20933307) # => Equivalent to above
 
 ```
 
-## [Documentation]()
+## [Documentation](http://rdoc.info/github/Anujan/riot-api/master/frames)
 
 ## Contributing
 
