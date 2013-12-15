@@ -1,10 +1,13 @@
 module RiotAPI
 	class InvalidAPIRequest < StandardError
 	end
+	# This class is what handles the requests to the API.
 	class Client
-
+		#API Version. Be aware that this is only a default value. It CAN be overriden within the methods.
 		VERSION = 'v1.1'
 
+		# Issues a GET request the the API. Pass in the region, and resource as well as optional query params.
+		# It will return a Hash of the JSON data
 		def self.get(region, resource, options={})
 			region.downcase!
 			options.merge!({api_key: RiotAPI::API_KEY})
@@ -17,6 +20,8 @@ module RiotAPI
 			end
 		end
 
+		# Issues a POST request the the API. Pass in the region, and resource as well as optional query params.
+		# It will return a Hash of the JSON data
 		def self.post(region, resource, options={})
 			region.downcase!
 			options.merge!({api_key: RiotAPI::API_KEY})

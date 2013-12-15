@@ -13,6 +13,7 @@ module RiotAPI
 			end
 		end
 
+		# Returns the last 10 games for the summoner
 		def self.recent_games(region, summoner_id)
 			response = RiotAPI::Client.get(region, "game/by-summoner/#{summoner_id}/recent")
 			response["games"].map do |data|
