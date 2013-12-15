@@ -1,12 +1,14 @@
 module RiotAPI
 	class Game
+		attr_reader :statistics
 		def initialize(data)
 			data.each do |key, value|
-				self.class.send(:attr_accessor, key.to_sym)
-				if key = 'statistics'
+				key = key.underscore
+				if key == 'statistics'
 					self.statistics = value
 				else
-					instance_variable_set("@#{key.underscore}", value)
+					self.class.send(:attr_accessor, key.to_sym)
+					instance_variable_set("@#{key}", value)
 				end
 			end
 		end
@@ -19,7 +21,7 @@ module RiotAPI
 		end
 
 		def statistics=(value)
-			value.map do |stat|
+			@statistics = value.map do |stat|
 				AggregatedStat.new(stat)
 			end
 		end

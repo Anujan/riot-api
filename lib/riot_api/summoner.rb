@@ -4,8 +4,9 @@ module RiotAPI
 		def initialize(data, region)
 			@region = region
 			data.each do |key, value|
+				key = key.underscore
 				self.class.send(:attr_accessor, key.to_sym)
-				instance_variable_set("@#{key.underscore}", value)
+				instance_variable_set("@#{key}", value)
 			end
 		end
 
@@ -34,15 +35,15 @@ module RiotAPI
 		end
 
 		def mastery_pages
-			MasteryPage.find(self.region, self.summoner_id)
+			MasteryPage.find(self.region, self.id)
 		end
 
 		def rune_pages
-			RunePage.find(self.region, self.summoner_id)
+			RunePage.find(self.region, self.id)
 		end
 
 		def player_stats(season='SEASON3')
-			PlayerStatSummary.find(self.region, self.summoner_id, season)
+			PlayerStatSummary.find(self.region, self.id, season)
 		end
 	end
 end

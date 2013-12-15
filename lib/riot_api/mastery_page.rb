@@ -1,12 +1,14 @@
 module RiotAPI
 	class MasteryPage
+		attr_reader :talents
 		def initialize(data)
 			data.each do |key, value|
-				self.class.send(:attr_accessor, key.to_sym)
+				key = key.underscore
 				if key == "talents"
-					self.talents = val
+					self.talents = value
 				else
-					instance_variable_set("@#{key.underscore}", value)
+					self.class.send(:attr_accessor, key.to_sym)
+					instance_variable_set("@#{key}", value)
 				end
 			end
 		end
@@ -19,9 +21,9 @@ module RiotAPI
 		end
 
 		def talents=(value)
-			talents = {}
+			@talents = {}
 			value.each do |talent|
-				talents[talent.id] = Talent.new(talent)
+				@talents[talent["id"]] = Talent.new(talent)
 			end
 		end
 	end

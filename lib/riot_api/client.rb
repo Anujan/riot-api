@@ -6,6 +6,7 @@ module RiotAPI
 		VERSION = 'v1.1'
 
 		def self.get(region, resource, options={})
+			region.downcase!
 			options.merge!({api_key: RiotAPI::API_KEY})
 			url = "http://prod.api.pvp.net/api/lol/#{region}/#{VERSION}/#{resource}"
 			response = HTTParty.get(url, query: options)
@@ -17,14 +18,14 @@ module RiotAPI
 		end
 
 		def self.post(region, resource, options={})
+			region.downcase!
 			options.merge!({api_key: RiotAPI::API_KEY})
 			url = "http://prod.api.pvp.net/api/lol/#{region}/#{version}/#{resource}"
 			response = HTTParty.post(url, query: options)
 			if response.code == 200
 				JSON.parse(response.body)
 			else
-				nil
-				#throw InvalidAPIRequest, response.message
+				throw InvalidAPIRequest, response.message
 			end
 		end
 	end

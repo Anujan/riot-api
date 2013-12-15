@@ -1,12 +1,15 @@
 module RiotAPI
 	class RunePage
+		attr_reader :slots
+		
 		def initialize(data)
 			data.each do |key, value|
-				self.class.send(:attr_accessor, key.to_sym)
+				key = key.underscore
 				if key == "slots"
 					self.slots = value
 				else
-					instance_variable_set("@#{key.underscore}", value)
+					self.class.send(:attr_accessor, key.to_sym)
+					instance_variable_set("@#{key}", value)
 				end
 			end
 		end
@@ -19,9 +22,9 @@ module RiotAPI
 		end
 
 		def slots=(val)
-			self.slots = {}
+			@slots = {}
 			val.each do |slot|
-				self.slots[slot["runeSlotId"]] = Rune.new(slot["rune"])
+				@slots[slot["runeSlotId"]] = Rune.new(slot["rune"])
 			end
 		end
 	end
